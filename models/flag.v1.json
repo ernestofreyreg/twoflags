@@ -1,0 +1,33 @@
+{
+  "title": "Flag",
+  "type": "object",
+  "description": "Describes a single flag",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "x-examples": {
+    "example-1": {
+      "id": "maintenance",
+      "type": "boolean",
+      "name": "Site Maintenance",
+      "description": "Puts web site on maintenance mode"
+    },
+    "example-2": {
+      "id": "intercomid",
+      "type": "APIKey",
+      "name": "Intercom ID",
+      "description": "Intercom API Key"
+    }
+  }
+}

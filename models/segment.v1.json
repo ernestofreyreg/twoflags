@@ -1,0 +1,40 @@
+{
+  "title": "segment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "params": {
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "x-examples": {
+    "example-1": {
+      "id": "experiment002",
+      "type": "weighted_choice",
+      "params": {
+        "options": [
+          "A",
+          "B"
+        ],
+        "weights": [
+          0.2,
+          0.8
+        ]
+      },
+      "name": "Experiment 002: New Sales Page",
+      "description": "New Sales Pages converts better"
+    }
+  },
+  "description": ""
+}

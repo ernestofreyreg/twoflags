@@ -1,0 +1,200 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "twoflags",
+    "version": "1.0",
+    "description": "All things API on twoflags"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/flags": {
+      "get": {
+        "summary": "Get all flags for current user",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../models/flag.v1.json"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-no-flags": {
+                    "value": {
+                      "data": []
+                    }
+                  },
+                  "example-with-flags": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "maintenance",
+                          "type": "boolean",
+                          "name": "Site Maintenance",
+                          "description": "Puts web site on maintenance mode"
+                        },
+                        {
+                          "id": "intercomid",
+                          "type": "APIKey",
+                          "name": "Intercom ID",
+                          "description": "Intercom API Key"
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-flags",
+        "description": "Get all flags for current user",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "parameters": []
+      },
+      "post": {
+        "summary": "Create a new Flag",
+        "operationId": "post-flags",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Create a new Flag",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../models/flag.v1.json"
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "intercomid",
+                    "type": "APIKey",
+                    "name": "Intercom ID",
+                    "description": "Intercom API Key"
+                  }
+                }
+              }
+            }
+          },
+          "description": "The body of the request is exactly the Flag data"
+        }
+      },
+      "patch": {
+        "summary": "Update a Flag",
+        "operationId": "patch-flags",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Update a Flag",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../models/flag.v1.json"
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "intercomid",
+                    "type": "APIKey",
+                    "name": "Intercom ID",
+                    "description": "Intercom API Key"
+                  }
+                }
+              }
+            }
+          },
+          "description": "The body of the request is exactly the Flag data"
+        }
+      },
+      "delete": {
+        "summary": "Delete a Flag",
+        "operationId": "delete-flags",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Deletes a Flag, if the Flag is part of a view, will also remove it there. ",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "maintenance"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "API Key": {
+        "name": "API Key",
+        "type": "apiKey",
+        "in": "header",
+        "description": ""
+      }
+    },
+    "schemas": {}
+  }
+}
