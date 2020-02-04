@@ -200,7 +200,6 @@
         },
         "operationId": "get-env",
         "description": "",
-        "requestBody": {},
         "parameters": [],
         "security": [
           {
@@ -420,7 +419,6 @@
         },
         "operationId": "get-segments",
         "description": "",
-        "requestBody": {},
         "security": [
           {
             "API Key": []
@@ -558,11 +556,6 @@
           }
         },
         "description": "Updates Flag values on a Environment / Namespace",
-        "security": [
-          {
-            "API Key": []
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -607,10 +600,21 @@
                   }
                 }
               }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
             }
           },
           "description": "null value means clear Flag on that Environment / Namespace"
-        }
+        },
+        "security": [
+          {
+            "API Key": []
+          }
+        ]
       }
     },
     "/apikeys": {
