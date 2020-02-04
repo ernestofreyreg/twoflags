@@ -81,7 +81,7 @@
         "description": "",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "parameters": []
@@ -97,7 +97,7 @@
         "description": "",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "requestBody": {
@@ -132,7 +132,7 @@
         "description": "",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "requestBody": {
@@ -209,7 +209,7 @@
         "parameters": [],
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ]
       },
@@ -225,7 +225,7 @@
         "description": "",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "requestBody": {
@@ -250,7 +250,7 @@
         "description": "",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "requestBody": {
@@ -304,7 +304,7 @@
         "description": "",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ]
       },
@@ -319,7 +319,7 @@
         "description": "",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "requestBody": {
@@ -372,7 +372,12 @@
             }
           },
           "description": ""
-        }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
       }
     },
     "/segments": {
@@ -427,7 +432,7 @@
         "description": "",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ]
       },
@@ -468,7 +473,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
       },
       "delete": {
         "summary": "Delete a Segment",
@@ -496,7 +506,7 @@
         },
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ]
       }
@@ -529,7 +539,7 @@
         "operationId": "get-set",
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "description": "Gets all Flag values for a Environment/Namespace (Flags not present in Namespace will return null values)",
@@ -618,7 +628,7 @@
         },
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ]
       }
@@ -666,7 +676,12 @@
             }
           }
         },
-        "operationId": "get-apikeys"
+        "operationId": "get-apikeys",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
       },
       "post": {
         "summary": "Create API Key",
@@ -678,7 +693,7 @@
         },
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "requestBody": {
@@ -713,7 +728,7 @@
         },
         "security": [
           {
-            "API Key": []
+            "Authorization": []
           }
         ],
         "requestBody": {
@@ -738,15 +753,59 @@
           }
         }
       }
+    },
+    "/resolver": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-resolver",
+        "requestBody": {},
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "env",
+            "description": "Environment"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "ns",
+            "description": "Namespace"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "cor",
+            "description": "Correlation ID"
+          }
+        ]
+      }
     }
   },
   "components": {
     "securitySchemes": {
-      "API Key": {
-        "name": "Authorization",
-        "type": "apiKey",
-        "in": "header",
-        "description": ""
+      "Authorization": {
+        "type": "http",
+        "scheme": "Bearer"
       }
     },
     "schemas": {}
