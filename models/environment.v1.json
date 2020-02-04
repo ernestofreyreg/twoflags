@@ -33,5 +33,5 @@
       ]
     }
   },
-  "description": "Environment"
+  "description": "Environments like in development, staging, production. You can have multiple or just one default environment."
 }

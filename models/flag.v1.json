@@ -1,7 +1,7 @@
 {
   "title": "Flag",
   "type": "object",
-  "description": "Describes a single flag",
+  "description": "Describes a single flag, Each Flag may or not contain a value (or multiple values if segmentacion is present) per Environment / Namespace.",
   "properties": {
     "id": {
       "type": "string"

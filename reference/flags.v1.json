@@ -7,13 +7,14 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://api.twoflags.io",
+      "description": ""
     }
   ],
   "paths": {
     "/flags": {
       "get": {
-        "summary": "Get all flags for current user",
+        "summary": "Get all User's Flags",
         "tags": [],
         "responses": {
           "200": {
@@ -67,7 +68,7 @@
           }
         },
         "operationId": "get-flags",
-        "description": "Get all flags for current user",
+        "description": "",
         "security": [
           {
             "API Key": []
@@ -76,49 +77,14 @@
         "parameters": []
       },
       "post": {
-        "summary": "Create a new Flag",
+        "summary": "Create or Update a Flag",
         "operationId": "post-flags",
         "responses": {
           "204": {
             "description": "No Content"
           }
         },
-        "description": "Create a new Flag",
-        "security": [
-          {
-            "API Key": []
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "../models/flag.v1.json"
-              },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "id": "intercomid",
-                    "type": "APIKey",
-                    "name": "Intercom ID",
-                    "description": "Intercom API Key"
-                  }
-                }
-              }
-            }
-          },
-          "description": "The body of the request is exactly the Flag data"
-        }
-      },
-      "patch": {
-        "summary": "Update a Flag",
-        "operationId": "patch-flags",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        },
-        "description": "Update a Flag",
+        "description": "",
         "security": [
           {
             "API Key": []
@@ -153,7 +119,7 @@
             "description": "No Content"
           }
         },
-        "description": "Deletes a Flag, if the Flag is part of a view, will also remove it there. ",
+        "description": "",
         "security": [
           {
             "API Key": []
@@ -166,9 +132,6 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "string"
-                  },
-                  "": {
                     "type": "string"
                   }
                 }
@@ -183,6 +146,349 @@
             }
           }
         }
+      },
+      "parameters": []
+    },
+    "/env": {
+      "get": {
+        "summary": "Gets all User's Environments",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../models/environment.v1.json"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-empty": {
+                    "value": {
+                      "data": []
+                    }
+                  },
+                  "example-multi": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "development",
+                          "name": "Development",
+                          "origins": [
+                            "localhost",
+                            "master.theapp.com"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-env",
+        "description": "",
+        "security": [
+          {
+            "API Key": []
+          }
+        ]
+      },
+      "parameters": [],
+      "post": {
+        "summary": "Create or Update an Environment",
+        "operationId": "post-env",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../models/environment.v1.json"
+              }
+            }
+          },
+          "description": "Environment data"
+        }
+      },
+      "delete": {
+        "summary": "Delete an Environment",
+        "operationId": "delete-env",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "production"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/namespaces": {
+      "get": {
+        "summary": "Get all User's Namespaces",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../models/namespace.v1.json"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-namespaces",
+        "description": "",
+        "security": [
+          {
+            "API Key": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create or Update a Namespace",
+        "operationId": "post-namespaces",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../models/namespace.v1.json"
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "main-app",
+                    "name": "Main App",
+                    "description": "Main App Flags View"
+                  }
+                }
+              }
+            }
+          },
+          "description": "A full Namespace data object"
+        }
+      },
+      "delete": {
+        "summary": "Delete a Namespace",
+        "operationId": "delete-namespaces",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "back-app"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/segments": {
+      "get": {
+        "summary": "Get all User's Segments",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../models/segment.v1.json"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "experiment002",
+                          "type": "weighted_choice",
+                          "params": {
+                            "options": [
+                              "A",
+                              "B"
+                            ],
+                            "weights": [
+                              0.2,
+                              0.8
+                            ]
+                          },
+                          "name": "Experiment 002: New Sales Page",
+                          "description": "New Sales Pages converts better"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-segments",
+        "description": "",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {}
+      },
+      "post": {
+        "summary": "Create or Update a Segment",
+        "operationId": "post-segments",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../models/segment.v1.json"
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "experiment002",
+                    "type": "weighted_choice",
+                    "params": {
+                      "options": [
+                        "A",
+                        "B"
+                      ],
+                      "weights": [
+                        0.2,
+                        0.8
+                      ]
+                    },
+                    "name": "Experiment 002: New Sales Page",
+                    "description": "New Sales Pages converts better"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a Segment",
+        "operationId": "delete-segments",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "security": [
+          {
+            "API Key": []
+          }
+        ]
       }
     }
   },
@@ -191,8 +497,7 @@
       "API Key": {
         "name": "API Key",
         "type": "apiKey",
-        "in": "header",
-        "description": ""
+        "in": "query"
       }
     },
     "schemas": {}

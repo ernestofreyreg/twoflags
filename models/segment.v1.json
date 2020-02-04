@@ -36,5 +36,5 @@
       "description": "New Sales Pages converts better"
     }
   },
-  "description": ""
+  "description": "A Segment describes a way to segment a Flag according to client identity (user id or some type of correlation id) We use weighted choices."
 }
