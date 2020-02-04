@@ -8,7 +8,11 @@
   "servers": [
     {
       "url": "https://api.twoflags.io",
-      "description": ""
+      "description": "Production"
+    },
+    {
+      "url": "https://staging-api.twoflags.io",
+      "description": "Staging"
     }
   ],
   "paths": {
@@ -414,12 +418,12 @@
         },
         "operationId": "get-segments",
         "description": "",
+        "requestBody": {},
         "security": [
           {
             "API Key": []
           }
-        ],
-        "requestBody": {}
+        ]
       },
       "post": {
         "summary": "Create or Update a Segment",
@@ -490,14 +494,247 @@
           }
         ]
       }
+    },
+    "/values": {
+      "get": {
+        "summary": "Get Flag Value",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "flag1": "Value1",
+                      "flag2": null,
+                      "flagN": "ValueN"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-set",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "description": "Gets all Flag values for a Environment/Namespace (Flags not present in Namespace will return null values)",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "env",
+            "description": "Environment ID"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "ns",
+            "description": "Namespace ID"
+          }
+        ]
+      },
+      "parameters": [],
+      "post": {
+        "summary": "Update Flag values",
+        "operationId": "post-values",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Updates Flag values on a Environment / Namespace",
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "env": {
+                    "type": "string"
+                  },
+                  "ns": {
+                    "type": "string"
+                  },
+                  "flag": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": [
+                      "string",
+                      "number",
+                      "integer",
+                      "boolean",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "env": "production",
+                    "ns": "main-app",
+                    "flag": "maintenance",
+                    "value": true
+                  }
+                },
+                "example-clear": {
+                  "value": {
+                    "env": "production",
+                    "ns": "main-app",
+                    "flag": "intercomid",
+                    "value": null
+                  }
+                }
+              }
+            }
+          },
+          "description": "null value means clear Flag on that Environment / Namespace"
+        }
+      }
+    },
+    "/apikeys": {
+      "get": {
+        "summary": "Get User's API Keys",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../models/apikeys.v1.json"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-empty": {
+                    "value": {
+                      "data": []
+                    }
+                  },
+                  "example-2": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "circleci",
+                          "key": "<uuid4>",
+                          "created_by": "johndaly",
+                          "created_at": "<iso date>"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-apikeys"
+      },
+      "post": {
+        "summary": "Create API Key",
+        "operationId": "post-apikeys",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "circleci"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an API Key",
+        "operationId": "delete-apikeys",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "API Key": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "circleci"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "securitySchemes": {
       "API Key": {
-        "name": "API Key",
+        "name": "Authorization",
         "type": "apiKey",
-        "in": "query"
+        "in": "header",
+        "description": ""
       }
     },
     "schemas": {}

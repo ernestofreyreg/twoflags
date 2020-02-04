@@ -1,0 +1,28 @@
+{
+  "title": "apikeys",
+  "type": "object",
+  "description": "API Keys",
+  "x-examples": {
+    "example-1": {
+      "id": "circleci",
+      "key": "<uuid4>",
+      "created_by": "johndaly",
+      "created_at": "<iso date>"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "key": {
+      "type": "string"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "ISO Date"
+    }
+  }
+}
