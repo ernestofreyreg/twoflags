@@ -3,16 +3,22 @@
   "info": {
     "title": "twoflags",
     "version": "1.0",
-    "description": "All things API on twoflags"
+    "description": "All things API on twoflags",
+    "contact": {
+      "name": "Dev Team",
+      "url": "https://twoflags.io/contact",
+      "email": "dev@twoflags.io"
+    },
+    "termsOfService": "https://twoflags.io/tos",
+    "license": {
+      "name": "MIT",
+      "url": "https://twoflags.io/licence"
+    }
   },
   "servers": [
     {
       "url": "https://api.twoflags.io",
       "description": "Production"
-    },
-    {
-      "url": "https://staging-api.twoflags.io",
-      "description": "Staging"
     }
   ],
   "paths": {
