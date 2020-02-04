@@ -31,7 +31,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "../models/flag.v1.json"
+                        "$ref": "./flag.v1.json"
                       }
                     }
                   }
@@ -98,7 +98,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../models/flag.v1.json"
+                "$ref": "./flag.v1.json"
               },
               "examples": {
                 "example-1": {
@@ -168,7 +168,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "../models/environment.v1.json"
+                        "$ref": "./environment.v1.json"
                       }
                     }
                   }
@@ -200,6 +200,8 @@
         },
         "operationId": "get-env",
         "description": "",
+        "requestBody": {},
+        "parameters": [],
         "security": [
           {
             "API Key": []
@@ -225,7 +227,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../models/environment.v1.json"
+                "$ref": "./environment.v1.json"
               }
             }
           },
@@ -284,7 +286,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "../models/namespace.v1.json"
+                        "$ref": "./namespace.v1.json"
                       }
                     }
                   }
@@ -319,7 +321,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../models/namespace.v1.json"
+                "$ref": "./namespace.v1.json"
               },
               "examples": {
                 "example-1": {
@@ -383,7 +385,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "../models/segment.v1.json"
+                        "$ref": "./segment.v1.json"
                       }
                     }
                   }
@@ -438,7 +440,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../models/segment.v1.json"
+                "$ref": "./segment.v1.json"
               },
               "examples": {
                 "example-1": {
@@ -626,7 +628,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "../models/apikeys.v1.json"
+                        "$ref": "./apikeys.v1.json"
                       }
                     }
                   }
