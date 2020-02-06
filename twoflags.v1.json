@@ -764,8 +764,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
-                }
+                  "type": "object",
+                  "properties": {
+                    "": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
               }
             }
           }
@@ -778,8 +784,9 @@
               "type": "string"
             },
             "in": "query",
-            "name": "env",
-            "description": "Environment"
+            "name": "acc",
+            "description": "Account ID",
+            "required": true
           },
           {
             "schema": {
@@ -788,6 +795,15 @@
             "in": "query",
             "name": "ns",
             "description": "Namespace"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "env",
+            "description": "Environment",
+            "required": true
           },
           {
             "schema": {
