@@ -1,0 +1,22 @@
+{
+  "title": "clientviewapikeys",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "create_by": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  },
+  "x-examples": {
+    "example-1": {
+      "id": "circleci",
+      "created_by": "johndaly",
+      "created_at": "<iso date>"
+    }
+  }
+}

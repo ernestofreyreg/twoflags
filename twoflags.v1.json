@@ -648,7 +648,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "./apikeys.v1.json"
+                        "$ref": "./clientviewapikeys.v1.json"
                       }
                     }
                   }
@@ -664,7 +664,6 @@
                       "data": [
                         {
                           "id": "circleci",
-                          "key": "<uuid4>",
                           "created_by": "johndaly",
                           "created_at": "<iso date>"
                         }
@@ -687,8 +686,15 @@
         "summary": "Create API Key",
         "operationId": "post-apikeys",
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./apikeys.v1.json"
+                }
+              }
+            }
           }
         },
         "security": [
