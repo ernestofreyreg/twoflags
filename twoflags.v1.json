@@ -176,13 +176,17 @@
                       "items": {
                         "$ref": "./environment.v1.json"
                       }
+                    },
+                    "slots": {
+                      "type": "number"
                     }
                   }
                 },
                 "examples": {
                   "example-empty": {
                     "value": {
-                      "data": []
+                      "data": [],
+                      "slots": 10
                     }
                   },
                   "example-multi": {
@@ -196,7 +200,8 @@
                             "master.theapp.com"
                           ]
                         }
-                      ]
+                      ],
+                      "slots": 9
                     }
                   }
                 }
@@ -218,8 +223,27 @@
         "summary": "Create or Update an Environment",
         "operationId": "post-env",
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./environment.v1.json"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "id": "development",
+                      "name": "Development",
+                      "origins": [
+                        "localhost",
+                        "master.theapp.com"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "description": "",
@@ -233,6 +257,18 @@
             "application/json": {
               "schema": {
                 "$ref": "./environment.v1.json"
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "development",
+                    "name": "Development",
+                    "origins": [
+                      "localhost",
+                      "master.theapp.com"
+                    ]
+                  }
+                }
               }
             }
           },
@@ -650,13 +686,17 @@
                       "items": {
                         "$ref": "./clientviewapikeys.v1.json"
                       }
+                    },
+                    "slots": {
+                      "type": "number"
                     }
                   }
                 },
                 "examples": {
                   "example-empty": {
                     "value": {
-                      "data": []
+                      "data": [],
+                      "slots": 10
                     }
                   },
                   "example-2": {
@@ -667,7 +707,8 @@
                           "created_by": "johndaly",
                           "created_at": "<iso date>"
                         }
-                      ]
+                      ],
+                      "slots": 9
                     }
                   }
                 }
