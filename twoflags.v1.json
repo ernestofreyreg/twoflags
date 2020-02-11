@@ -244,6 +244,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "Limits reached"
           }
         },
         "description": "",
@@ -736,6 +739,9 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "Limits reached"
           }
         },
         "security": [
