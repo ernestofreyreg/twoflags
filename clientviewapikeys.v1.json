@@ -1,6 +1,14 @@
 {
   "title": "clientviewapikeys",
   "type": "object",
+  "x-examples": {
+    "example-1": {
+      "id": "circleci",
+      "created_by": "johndaly",
+      "created_at": "<iso date>",
+      "last_used": "<iso date>"
+    }
+  },
   "properties": {
     "id": {
       "type": "string"
@@ -10,13 +18,12 @@
     },
     "created_at": {
       "type": "string"
-    }
-  },
-  "x-examples": {
-    "example-1": {
-      "id": "circleci",
-      "created_by": "johndaly",
-      "created_at": "<iso date>"
+    },
+    "last_used": {
+      "type": [
+        "string",
+        "null"
+      ]
     }
   }
 }

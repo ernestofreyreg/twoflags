@@ -708,7 +708,8 @@
                         {
                           "id": "circleci",
                           "created_by": "johndaly",
-                          "created_at": "<iso date>"
+                          "created_at": "<iso date>",
+                          "last_used": "<iso date>"
                         }
                       ],
                       "slots": 9
@@ -736,6 +737,17 @@
               "application/json": {
                 "schema": {
                   "$ref": "./apikeys.v1.json"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "id": "circleci",
+                      "key": "<uuid4>",
+                      "created_by": "johndaly",
+                      "created_at": "<iso date>",
+                      "last_used": null
+                    }
+                  }
                 }
               }
             }

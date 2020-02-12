@@ -7,7 +7,15 @@
       "id": "circleci",
       "key": "<uuid4>",
       "created_by": "johndaly",
-      "created_at": "<iso date>"
+      "created_at": "<iso date>",
+      "last_used": "<iso date>"
+    },
+    "example-2-never-used": {
+      "id": "circleci",
+      "key": "<uuid4>",
+      "created_by": "johndaly",
+      "created_at": "<iso date>",
+      "last_used": null
     }
   },
   "properties": {
@@ -22,6 +30,13 @@
     },
     "created_at": {
       "type": "string",
+      "description": "ISO Date"
+    },
+    "last_used": {
+      "type": [
+        "string",
+        "null"
+      ],
       "description": "ISO Date"
     }
   }
