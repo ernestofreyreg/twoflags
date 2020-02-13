@@ -1,23 +1,6 @@
 {
   "title": "segment",
   "type": "object",
-  "properties": {
-    "id": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    },
-    "params": {
-      "type": "object"
-    },
-    "name": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    }
-  },
   "x-examples": {
     "example-1": {
       "id": "experiment002",
@@ -36,5 +19,36 @@
       "description": "New Sales Pages converts better"
     }
   },
-  "description": "A Segment describes a way to segment a Flag according to client identity (user id or some type of correlation id) We use weighted choices."
+  "description": "A Segment describes a way to segment a Flag according to client identity (user id or some type of correlation id) We use weighted choices.",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "params": {
+      "type": "object",
+      "properties": {
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "weights": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
 }
