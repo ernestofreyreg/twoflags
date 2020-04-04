@@ -25,7 +25,10 @@
     "/flags": {
       "get": {
         "summary": "Get all User's Flags",
-        "tags": [],
+        "tags": [
+          "flags",
+          "get"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -172,7 +175,11 @@
             }
           },
           "description": "The body of the request is exactly the Flag data"
-        }
+        },
+        "tags": [
+          "flags",
+          "post"
+        ]
       },
       "delete": {
         "summary": "Delete a Flag",
@@ -214,7 +221,11 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "flags",
+          "delete"
+        ]
       },
       "parameters": [],
       "patch": {
@@ -278,13 +289,16 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "flags",
+          "patch"
+        ]
       }
     },
     "/environments": {
       "get": {
         "summary": "Gets all User's Environments",
-        "tags": [],
         "responses": {
           "200": {
             "description": "OK",
@@ -394,19 +408,23 @@
             }
           }
         },
-        "operationId": "get-env",
+        "operationId": "get-environments",
         "description": "Get all Environments",
         "parameters": [],
         "security": [
           {
             "Authorization": []
           }
+        ],
+        "tags": [
+          "environments",
+          "get"
         ]
       },
       "parameters": [],
       "post": {
         "summary": "Create an Environment",
-        "operationId": "post-env",
+        "operationId": "post-environments",
         "responses": {
           "204": {
             "description": "No Content"
@@ -461,11 +479,15 @@
             }
           },
           "description": "Environment data"
-        }
+        },
+        "tags": [
+          "environments",
+          "post"
+        ]
       },
       "delete": {
         "summary": "Delete an Environment",
-        "operationId": "delete-env",
+        "operationId": "delete-environments",
         "responses": {
           "204": {
             "description": "No Content"
@@ -503,7 +525,11 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "environments",
+          "delete"
+        ]
       },
       "patch": {
         "summary": "",
@@ -566,13 +592,20 @@
           {
             "Authorization": []
           }
+        ],
+        "tags": [
+          "environments",
+          "patch"
         ]
       }
     },
     "/namespaces": {
       "get": {
         "summary": "Get all User's Namespaces",
-        "tags": [],
+        "tags": [
+          "namespaces",
+          "get"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -672,7 +705,11 @@
             }
           },
           "description": "A full Namespace data object"
-        }
+        },
+        "tags": [
+          "namespaces",
+          "post"
+        ]
       },
       "delete": {
         "summary": "Delete a Namespace",
@@ -712,6 +749,10 @@
           {
             "Authorization": []
           }
+        ],
+        "tags": [
+          "namespaces",
+          "delete"
         ]
       },
       "patch": {
@@ -756,13 +797,20 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "namespaces",
+          "patch"
+        ]
       }
     },
     "/values": {
       "get": {
         "summary": "Get Flag Value",
-        "tags": [],
+        "tags": [
+          "values",
+          "get"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -784,7 +832,7 @@
             }
           }
         },
-        "operationId": "get-set",
+        "operationId": "get-values",
         "security": [
           {
             "Authorization": []
@@ -877,13 +925,20 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "values",
+          "patch"
+        ]
       }
     },
     "/apikeys": {
       "get": {
         "summary": "Get User's API Keys",
-        "tags": [],
+        "tags": [
+          "apikeys",
+          "get"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1028,7 +1083,11 @@
             }
           }
         },
-        "description": "Creates an API Key, it returns the full API Key object including the actualy Key, this is the only time the key is shared on the API."
+        "description": "Creates an API Key, it returns the full API Key object including the actualy Key, this is the only time the key is shared on the API.",
+        "tags": [
+          "apikeys",
+          "post"
+        ]
       },
       "delete": {
         "summary": "Delete an API Key",
@@ -1070,13 +1129,20 @@
             }
           }
         },
-        "description": "Deletes an API Key"
+        "description": "Deletes an API Key",
+        "tags": [
+          "apikeys",
+          "delete"
+        ]
       }
     },
     "/resolver": {
       "get": {
         "summary": "Feature Flags Resolver",
-        "tags": [],
+        "tags": [
+          "resolver",
+          "get"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1085,7 +1151,7 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "": {
+                    "resolv": {
                       "type": "string"
                     }
                   }
@@ -1147,7 +1213,7 @@
     "/flags/selector": {
       "post": {
         "summary": "Update flag selector",
-        "operationId": "post-flags-select",
+        "operationId": "post-flags-selectors",
         "responses": {
           "204": {
             "description": "No Content"
@@ -1203,12 +1269,17 @@
             }
           }
         },
-        "description": ""
+        "description": "",
+        "tags": [
+          "selectors",
+          "flags",
+          "post"
+        ]
       },
       "parameters": [],
       "get": {
         "summary": "",
-        "operationId": "get-flags-selector",
+        "operationId": "get-flags-selectors",
         "responses": {
           "200": {
             "description": "OK",
@@ -1273,11 +1344,16 @@
             "description": "Feature Flag `id`",
             "required": true
           }
+        ],
+        "tags": [
+          "selectors",
+          "get",
+          "flags"
         ]
       },
       "delete": {
         "summary": "",
-        "operationId": "delete-flags-selector",
+        "operationId": "delete-flags-selectors",
         "responses": {
           "204": {
             "description": "No Content"
@@ -1317,7 +1393,12 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "flags",
+          "selectors",
+          "delete"
+        ]
       }
     }
   },
