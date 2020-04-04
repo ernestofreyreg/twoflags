@@ -212,7 +212,7 @@
           }
         },
         "operationId": "get-env",
-        "description": "",
+        "description": "Get all Environments",
         "parameters": [],
         "security": [
           {
@@ -226,32 +226,13 @@
         "operationId": "post-env",
         "responses": {
           "204": {
-            "description": "No Content",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "./environment.v1.json"
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "id": "development",
-                      "name": "Development",
-                      "origins": [
-                        "localhost",
-                        "master.theapp.com"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
+            "description": "No Content"
           },
           "412": {
             "description": "Limits reached"
           }
         },
-        "description": "",
+        "description": "Create a new Environment",
         "security": [
           {
             "Authorization": []
@@ -286,9 +267,12 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found if id doesn't exists"
           }
         },
-        "description": "",
+        "description": "Delete an Environment",
         "security": [
           {
             "Authorization": []
@@ -315,6 +299,45 @@
             }
           }
         }
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-environments",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          }
+        },
+        "description": "Update a Environment, the id property cannot be changed.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./environment.v1.json"
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "development",
+                    "name": "Development",
+                    "origins": [
+                      "localhost",
+                      "master.theapp.com"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
       }
     },
     "/namespaces": {
@@ -793,6 +816,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found if id doesn't exists"
           }
         },
         "security": [
@@ -820,7 +846,8 @@
               }
             }
           }
-        }
+        },
+        "description": "Deletes an API Key"
       }
     },
     "/resolver": {
