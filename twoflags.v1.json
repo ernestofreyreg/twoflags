@@ -1075,7 +1075,7 @@
     },
     "/resolver": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Feature Flags Resolver",
         "tags": [],
         "responses": {
           "200": {
@@ -1113,7 +1113,8 @@
             },
             "in": "query",
             "name": "ns",
-            "description": "Namespace"
+            "description": "Namespace",
+            "required": true
           },
           {
             "schema": {
@@ -1121,8 +1122,7 @@
             },
             "in": "query",
             "name": "env",
-            "description": "Environment",
-            "required": true
+            "description": "Environment"
           },
           {
             "schema": {
@@ -1131,8 +1131,17 @@
             "in": "query",
             "name": "cor",
             "description": "Correlation ID"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "origin",
+            "description": "The origin is used to identify the environment on Frontend applications. For Backend applications use the environment parameter."
           }
-        ]
+        ],
+        "description": "This is the endpoint Client SDK uses to consume the Feature Flags. "
       }
     },
     "/flags/selector": {
