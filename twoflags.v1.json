@@ -759,137 +759,6 @@
         }
       }
     },
-    "/segments": {
-      "get": {
-        "summary": "Get all User's Segments",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "./segment.v1.json"
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "data": [
-                        {
-                          "id": "experiment002",
-                          "type": "weighted_choice",
-                          "params": {
-                            "options": [
-                              "A",
-                              "B"
-                            ],
-                            "weights": [
-                              0.2,
-                              0.8
-                            ]
-                          },
-                          "name": "Experiment 002: New Sales Page",
-                          "description": "New Sales Pages converts better"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-segments",
-        "description": "",
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
-      },
-      "post": {
-        "summary": "Create or Update a Segment",
-        "operationId": "post-segments",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        },
-        "description": "",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "./segment.v1.json"
-              },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "id": "experiment002",
-                    "type": "weighted_choice",
-                    "params": {
-                      "options": [
-                        "A",
-                        "B"
-                      ],
-                      "weights": [
-                        0.2,
-                        0.8
-                      ]
-                    },
-                    "name": "Experiment 002: New Sales Page",
-                    "description": "New Sales Pages converts better"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
-      },
-      "delete": {
-        "summary": "Delete a Segment",
-        "operationId": "delete-segments",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        },
-        "description": "",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        },
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
-      }
-    },
     "/values": {
       "get": {
         "summary": "Get Flag Value",
@@ -929,7 +798,8 @@
             },
             "in": "query",
             "name": "env",
-            "description": "Environment ID"
+            "description": "Environment ID",
+            "required": true
           },
           {
             "schema": {
@@ -937,79 +807,77 @@
             },
             "in": "query",
             "name": "ns",
-            "description": "Namespace ID"
+            "description": "Namespace ID",
+            "required": true
           }
         ]
       },
       "parameters": [],
-      "post": {
-        "summary": "Update Flag values",
-        "operationId": "post-values",
+      "patch": {
+        "summary": "",
+        "operationId": "patch-values",
         "responses": {
           "204": {
             "description": "No Content"
           }
         },
-        "description": "Updates Flag values on a Environment / Namespace",
+        "description": "Update flag value on Environment/Namespace",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "env": {
+                  "environment": {
                     "type": "string"
                   },
-                  "ns": {
+                  "namespace": {
                     "type": "string"
                   },
-                  "flag": {
+                  "id": {
                     "type": "string"
                   },
                   "value": {
                     "type": [
                       "string",
                       "number",
-                      "integer",
-                      "boolean",
-                      "null"
+                      "boolean"
                     ]
                   }
-                }
+                },
+                "required": [
+                  "environment",
+                  "namespace",
+                  "id",
+                  "value"
+                ]
               },
               "examples": {
                 "example-1": {
                   "value": {
-                    "env": "production",
-                    "ns": "main-app",
-                    "flag": "maintenance",
-                    "value": true
+                    "environment": "local",
+                    "namespace": "front-end",
+                    "id": "feature002",
+                    "value": 50
                   }
                 },
-                "example-clear": {
+                "example-2": {
                   "value": {
-                    "env": "production",
-                    "ns": "main-app",
-                    "flag": "intercomid",
-                    "value": null
+                    "environment": "local",
+                    "namespace": "front-end",
+                    "id": "maintenance",
+                    "value": true
                   }
                 }
               }
-            },
-            "application/xml": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
             }
-          },
-          "description": "null value means clear Flag on that Environment / Namespace"
-        },
-        "security": [
-          {
-            "Authorization": []
           }
-        ]
+        }
       }
     },
     "/apikeys": {
