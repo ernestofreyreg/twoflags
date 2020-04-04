@@ -584,8 +584,36 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "./namespace.v1.json"
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
                       }
+                    },
+                    "slots": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "front-end",
+                          "name": "Front-end App"
+                        },
+                        {
+                          "id": "back-end",
+                          "name": "Back-end Service"
+                        }
+                      ],
+                      "slots": 18
                     }
                   }
                 }
@@ -594,7 +622,7 @@
           }
         },
         "operationId": "get-namespaces",
-        "description": "",
+        "description": "Get all Namespaces",
         "security": [
           {
             "Authorization": []
@@ -609,7 +637,7 @@
             "description": "No Content"
           }
         },
-        "description": "",
+        "description": "Create a new Namespace",
         "security": [
           {
             "Authorization": []
@@ -619,14 +647,25 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "./namespace.v1.json"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ]
               },
               "examples": {
                 "example-1": {
                   "value": {
                     "id": "main-app",
-                    "name": "Main App",
-                    "description": "Main App Flags View"
+                    "name": "Main App"
                   }
                 }
               }
@@ -653,7 +692,10 @@
                   "id": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "id"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -671,6 +713,50 @@
             "Authorization": []
           }
         ]
+      },
+      "patch": {
+        "summary": "",
+        "operationId": "patch-namespaces",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Update a Namespace",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ]
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "back-end",
+                    "name": "Back-end Service"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/segments": {
