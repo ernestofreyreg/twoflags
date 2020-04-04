@@ -219,12 +219,26 @@
                       "type": "array",
                       "description": "Array of Environments",
                       "items": {
-                        "$ref": "./environment.v1.json"
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "origins": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
                       }
                     },
                     "slots": {
                       "type": "number",
-                      "description": "Remaining Environment Slots"
+                      "description": ""
                     }
                   }
                 },
@@ -236,6 +250,53 @@
                     }
                   },
                   "example-multi": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "development",
+                          "name": "Development",
+                          "origins": [
+                            "localhost",
+                            "master.theapp.com"
+                          ]
+                        }
+                      ],
+                      "slots": 9
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "origins": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "slots": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
                     "value": {
                       "data": [
                         {
@@ -286,7 +347,26 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "./environment.v1.json"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "origins": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "origins"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -331,7 +411,10 @@
                   "id": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "id"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -360,7 +443,24 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "./environment.v1.json"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "origins": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "id"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -372,10 +472,17 @@
                       "master.theapp.com"
                     ]
                   }
+                },
+                "example-2": {
+                  "value": {
+                    "id": "development",
+                    "name": "Development"
+                  }
                 }
               }
             }
-          }
+          },
+          "description": ""
         },
         "security": [
           {
