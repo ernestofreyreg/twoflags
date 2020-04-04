@@ -36,16 +36,22 @@
                   "properties": {
                     "data": {
                       "type": "array",
+                      "description": "Array of Feature Flags",
                       "items": {
                         "$ref": "./flag.v1.json"
                       }
+                    },
+                    "slots": {
+                      "type": "number",
+                      "description": "Remaining Feature Flags slots"
                     }
                   }
                 },
                 "examples": {
                   "example-no-flags": {
                     "value": {
-                      "data": []
+                      "data": [],
+                      "slots": 100
                     }
                   },
                   "example-with-flags": {
@@ -63,7 +69,8 @@
                           "name": "Intercom ID",
                           "description": "Intercom API Key"
                         }
-                      ]
+                      ],
+                      "slots": 98
                     }
                   }
                 }
@@ -78,7 +85,7 @@
           }
         },
         "operationId": "get-flags",
-        "description": "",
+        "description": "Get all Feature Flags",
         "security": [
           {
             "Authorization": []
@@ -94,7 +101,7 @@
             "description": "No Content"
           }
         },
-        "description": "",
+        "description": "Create a new Feature Flag",
         "security": [
           {
             "Authorization": []
@@ -112,7 +119,7 @@
                     "id": "intercomid",
                     "type": "APIKey",
                     "name": "Intercom ID",
-                    "description": "Intercom API Key"
+                    "active": true
                   }
                 }
               }
@@ -127,6 +134,9 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found if `id` doesn't exists"
           }
         },
         "description": "",
@@ -157,7 +167,41 @@
           }
         }
       },
-      "parameters": []
+      "parameters": [],
+      "patch": {
+        "summary": "",
+        "operationId": "patch-flags",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Update a Feature Flag. `id` and `type` properties cannot be changed.",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./flag.v1.json"
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "intercomid",
+                    "type": "APIKey",
+                    "name": "Intercom ID",
+                    "active": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "/environments": {
       "get": {
@@ -712,7 +756,24 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "./clientviewapikeys.v1.json"
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "created_by": {
+                            "type": "string",
+                            "description": ""
+                          },
+                          "created_at": {
+                            "type": "string",
+                            "description": "ISO Date String"
+                          },
+                          "last_used": {
+                            "type": "string",
+                            "description": "ISO Date String"
+                          }
+                        }
                       }
                     },
                     "slots": {
@@ -762,7 +823,24 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "./apikeys.v1.json"
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "created_by": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "last_used": {
+                      "type": "string"
+                    },
+                    "key": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "examples": {
                   "example-1": {
@@ -796,7 +874,10 @@
                   "id": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "id"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -835,7 +916,10 @@
                   "id": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "id"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -975,20 +1059,90 @@
                     "type": "string"
                   },
                   "value": {
-                    "type": [
-                      "string",
-                      "number",
-                      "boolean"
-                    ]
+                    "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "id",
+                  "op",
+                  "label",
+                  "value"
+                ]
               }
             }
           }
         },
         "description": ""
       },
-      "parameters": []
+      "parameters": [],
+      "get": {
+        "summary": "",
+        "operationId": "get-flags-selector",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data:": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "slots": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": [
+                        {
+                          "label": "Test Environment",
+                          "value": "1029009093232"
+                        },
+                        {
+                          "label": "Production Environment",
+                          "value": "32789878989842"
+                        }
+                      ],
+                      "slots": 48
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Get Feature Flag Selectors. A Selector is a possible value on a string Feature Flag identified by a name.",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "id",
+            "description": "Feature Flag `id`"
+          }
+        ]
+      }
     }
   },
   "components": {
