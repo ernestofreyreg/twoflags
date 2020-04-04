@@ -116,7 +116,7 @@
         "parameters": []
       },
       "post": {
-        "summary": "Create or Update a Flag",
+        "summary": "Create a New Flag",
         "operationId": "post-flags",
         "responses": {
           "204": {
@@ -226,7 +226,7 @@
       },
       "parameters": [],
       "patch": {
-        "summary": "",
+        "summary": "Update a Flag",
         "operationId": "patch-flags",
         "responses": {
           "204": {
@@ -525,7 +525,7 @@
         ]
       },
       "patch": {
-        "summary": "",
+        "summary": "Update an Environment",
         "operationId": "patch-environments",
         "responses": {
           "204": {
@@ -745,7 +745,7 @@
         ]
       },
       "patch": {
-        "summary": "",
+        "summary": "Update a Namespace",
         "operationId": "patch-namespaces",
         "responses": {
           "204": {
@@ -849,7 +849,7 @@
       },
       "parameters": [],
       "patch": {
-        "summary": "",
+        "summary": "Update a Value on a Environment/Namespace",
         "operationId": "patch-values",
         "responses": {
           "204": {
@@ -1194,7 +1194,7 @@
     },
     "/flags/selector": {
       "post": {
-        "summary": "Update flag selector",
+        "summary": "Update Flag Selector",
         "operationId": "post-flags-selectors",
         "responses": {
           "204": {
@@ -1259,7 +1259,7 @@
       },
       "parameters": [],
       "get": {
-        "summary": "",
+        "summary": "Get All Flag Selectors",
         "operationId": "get-flags-selectors",
         "responses": {
           "200": {
@@ -1332,7 +1332,7 @@
         ]
       },
       "delete": {
-        "summary": "",
+        "summary": "Delete a Flag Selector by Index",
         "operationId": "delete-flags-selectors",
         "responses": {
           "204": {
