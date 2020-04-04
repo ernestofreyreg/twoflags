@@ -38,7 +38,27 @@
                       "type": "array",
                       "description": "Array of Feature Flags",
                       "items": {
-                        "$ref": "./flag.v1.json"
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": [
+                              "boolean",
+                              "number",
+                              "egment",
+                              "tring"
+                            ]
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "active": {
+                            "type": "boolean"
+                          }
+                        }
                       }
                     },
                     "slots": {
@@ -111,7 +131,33 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "./flag.v1.json"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "string",
+                      "boolean",
+                      "number",
+                      "segment"
+                    ]
+                  },
+                  "active": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "type",
+                  "active"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -154,7 +200,10 @@
                   "id": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "id"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -172,8 +221,8 @@
         "summary": "",
         "operationId": "patch-flags",
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           }
         },
         "description": "Update a Feature Flag. `id` and `type` properties cannot be changed.",
@@ -186,7 +235,30 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "./flag.v1.json"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "string",
+                      "number",
+                      "boolean",
+                      "segment"
+                    ]
+                  },
+                  "active": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
               },
               "examples": {
                 "example-1": {
@@ -195,6 +267,12 @@
                     "type": "APIKey",
                     "name": "Intercom ID",
                     "active": true
+                  }
+                },
+                "example-2": {
+                  "value": {
+                    "id": "intercomid",
+                    "active": false
                   }
                 }
               }
