@@ -1186,35 +1186,8 @@
         "summary": "Update flag selector",
         "operationId": "post-flags-select",
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "label": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": [
-                              "string",
-                              "number",
-                              "boolean"
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           }
         },
         "security": [
@@ -1253,6 +1226,16 @@
                   "label",
                   "value"
                 ]
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "sentry-id",
+                    "op": "push",
+                    "label": "Test Account 3",
+                    "value": "50ca647d-2563-44c8-9315-914e60cfb9b6"
+                  }
+                }
               }
             }
           }
@@ -1324,9 +1307,54 @@
             },
             "in": "query",
             "name": "id",
-            "description": "Feature Flag `id`"
+            "description": "Feature Flag `id`",
+            "required": true
           }
         ]
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-flags-selector",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "Delete a Selector by index",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "index": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "id",
+                  "index"
+                ]
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "id": "sentry-id",
+                    "index": 2
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
