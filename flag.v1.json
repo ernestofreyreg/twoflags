@@ -14,22 +14,6 @@
       "type": "apikey",
       "name": "Intercom ID",
       "description": "Intercom API Key"
-    },
-    "example-3": {
-      "id": "deployed-commit",
-      "type": "string",
-      "name": "Frontend deployed commit hash",
-      "description": "Selects what commit is used on Frontend",
-      "select": [
-        {
-          "label": "28 Feb 2020 noon",
-          "value": "299dacf08"
-        },
-        {
-          "label": "27 Feb 2020 03:08PM",
-          "value": "87afc238"
-        }
-      ]
     }
   },
   "properties": {
@@ -40,9 +24,6 @@
       "type": "string"
     },
     "name": {
-      "type": "string"
-    },
-    "description": {
       "type": "string"
     },
     "selector": {

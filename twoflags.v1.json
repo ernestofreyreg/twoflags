@@ -159,7 +159,7 @@
       },
       "parameters": []
     },
-    "/env": {
+    "/environments": {
       "get": {
         "summary": "Gets all User's Environments",
         "tags": [],
@@ -173,12 +173,14 @@
                   "properties": {
                     "data": {
                       "type": "array",
+                      "description": "Array of Environments",
                       "items": {
                         "$ref": "./environment.v1.json"
                       }
                     },
                     "slots": {
-                      "type": "number"
+                      "type": "number",
+                      "description": "Remaining Environment Slots"
                     }
                   }
                 },
@@ -220,11 +222,11 @@
       },
       "parameters": [],
       "post": {
-        "summary": "Create or Update an Environment",
+        "summary": "Create an Environment",
         "operationId": "post-env",
         "responses": {
-          "200": {
-            "description": "OK",
+          "204": {
+            "description": "No Content",
             "content": {
               "application/json": {
                 "schema": {
@@ -725,7 +727,8 @@
           {
             "Authorization": []
           }
-        ]
+        ],
+        "description": "This endpoint doesn't return the actual values of the API Keys. That value is only returned once on the Create API Key endpoint."
       },
       "post": {
         "summary": "Create API Key",
@@ -781,7 +784,8 @@
               }
             }
           }
-        }
+        },
+        "description": "Creates an API Key, it returns the full API Key object including the actualy Key, this is the only time the key is shared on the API."
       },
       "delete": {
         "summary": "Delete an API Key",
