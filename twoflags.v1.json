@@ -1161,7 +1161,7 @@
               "type": "string"
             },
             "in": "query",
-            "name": "acc",
+            "name": "account",
             "description": "Account ID",
             "required": true
           },
@@ -1187,7 +1187,7 @@
               "type": "string"
             },
             "in": "query",
-            "name": "cor",
+            "name": "uid",
             "description": "Correlation ID"
           },
           {
