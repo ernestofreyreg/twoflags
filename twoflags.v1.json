@@ -1137,8 +1137,14 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "resolv": {
+                    "environment": {
                       "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    },
+                    "flags": {
+                      "type": "object"
                     }
                   }
                 },
