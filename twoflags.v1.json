@@ -19,6 +19,10 @@
     {
       "url": "https://api.twoflags.io",
       "description": "Production"
+    },
+    {
+      "url": "https://resolver.twoflags.io",
+      "description": "Production Resolver"
     }
   ],
   "paths": {
@@ -1119,7 +1123,7 @@
         ]
       }
     },
-    "/resolver": {
+    "": {
       "get": {
         "summary": "Feature Flags Resolver",
         "tags": [
@@ -1190,7 +1194,8 @@
           }
         ],
         "description": "This is the endpoint Client SDK uses to consume the Feature Flags. "
-      }
+      },
+      "parameters": []
     },
     "/flags/selector": {
       "post": {
